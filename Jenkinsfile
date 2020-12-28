@@ -24,7 +24,7 @@ pipeline {
                     sh(script: "sed -i 's/%build_number%/$env.BUILD_NUMBER/g' build.json")
                     def buildConfig = readJSON file: "build.json"
                     def version = buildConfig["version"]
-                    sh(script: "sed -i 's/1\\.0\\.0-no-op/$version/g' $modName/manifest.json")
+                    sh(script: "sed -i 's/1\\.0\\.0-no-op/$version/g' '$modName/manifest.json'")
                 }
 
             }
@@ -32,7 +32,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building'
-                sh "nuget restore ${modName}.sln"
+                sh "nuget restore '${modName}.sln'"
                 sh "msbuild -p:EnableModDeploy=false -p:GamePath=$gamePath -p:ModZipPath=../build/"
             }
         }
