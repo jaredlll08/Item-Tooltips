@@ -7,8 +7,8 @@
         <ProjectGuid>{8ABC950E-2CF5-4B87-BF7D-C42134A82528}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>StardewValley_SMAPI_CICD</RootNamespace>
-        <AssemblyName>StardewValley_SMAPI_CICD</AssemblyName>
+        <RootNamespace>Item_Tooltips</RootNamespace>
+        <AssemblyName>ItemTooltips</AssemblyName>
         <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>

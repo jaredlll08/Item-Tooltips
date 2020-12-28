@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StardewValley-SMAPI-CICD", "StardewValley-SMAPI-CICD\StardewValley-SMAPI-CICD.csproj", "{8ABC950E-2CF5-4B87-BF7D-C42134A82528}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Item Tooltips", "Item Tooltips\Item Tooltips.csproj", "{8ABC950E-2CF5-4B87-BF7D-C42134A82528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

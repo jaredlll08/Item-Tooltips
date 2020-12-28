@@ -1,7 +1,7 @@
 {
-  "curseProjectId": "",
-  "version": "1.0.%build_number%",
-  "gameVersions": [],
+  "curseProjectId": "297655",
+  "version": "2.0.%build_number%",
+  "gameVersions": [1.5],
   "relations": [
     {
       "slug": "",

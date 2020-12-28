@@ -2,7 +2,7 @@
 import groovy.json.JsonOutput
 
 // Has to be the same as the solution name!
-def modName = ''
+def modName = 'Item Tooltips'
 // Needed to map jenkins config and nuget store to the container
 def jenkinsHome = "/var/lib/jenkins"
 // Path to the game, needed for build, mapped to /pot/stardewvalley in the csproj file
