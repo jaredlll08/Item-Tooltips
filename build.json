@@ -1,0 +1,15 @@
+{
+  "curseProjectId": "",
+  "version": "1.0.%build_number%",
+  "gameVersions": [],
+  "relations": [
+    {
+      "slug": "",
+      "type": ""
+    }
+  ],
+  "changelogType": "markdown",
+  "changelogFile": "changelog.md",
+  "releaseType": "release",
+  "deploy": false
+}
