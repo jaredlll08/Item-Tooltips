@@ -56,21 +56,30 @@ pipeline {
                                 changelogType: "",
                                 displayName  : "",
                                 gameVersions : [],
-                                releaseType  : "",
-                                relations    : [
-                                // This is optional, so the rest is required
-//                                         projects: []
-                                ]
+                                releaseType  : ""
                         ]
 
                         def buildConfig = readJSON file: "build.json"
+
+                        if(buildConfig.containsKey("relations")){
+                        manifest = [
+                            changelog    : "",
+                            changelogType: "",
+                            displayName  : "",
+                            gameVersions : [],
+                            releaseType  : "",
+                                relations : [
+                                    projects: []
+                             ]
+                        }
                         def deploy = buildConfig["deploy"]
                         if (deploy) {
                             manifest["changelog"] = readFile(file: buildConfig["changelogFile"])
                             manifest['changelogType'] = buildConfig["changelogType"]
                             manifest["releaseType"] = buildConfig["releaseType"]
 
-                            manifest["relations"]["projects"] = buildConfig['relations']
+                            if(buildConfig.containsKey("relations"))
+                                manifest["relations"]["projects"] = buildConfig['relations']
 
                             def secrets = readJSON file: SECRET_FILE
                             def projectId = buildConfig["curseProjectId"];
