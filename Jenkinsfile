@@ -93,6 +93,7 @@ pipeline {
                             def json = JsonOutput.toJson(manifest)
                             println "Uploading"
                             final String response = sh(script: "set +x && curl -s $url/api/projects/$projectId/upload-file -H 'X-Api-Token: $curseApiKey' -H 'content-type: multipart/form-data;' --form 'metadata=$json' --form 'file=@build/$fileName'", returnStdout: true).trim()
+                            println response
                             println "Upload Complete"
                         } else {
                             println "Deploy disabled in build.json!"
