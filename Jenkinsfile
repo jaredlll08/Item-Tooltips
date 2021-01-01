@@ -65,7 +65,7 @@ pipeline {
                             def projectId = buildConfig["curseProjectId"];
                             def gameVersions = buildConfig["gameVersions"];
                             def curseApiKey = secrets["curseApiKey"]
-                            final String versionRequest = sh(script: "set +x && curl -s $url/api/game/versions -H 'X-Api-Token: $curseApiKey'", returnStdout: true).trim()
+                            final String versionRequest = sh(script: "set +x && curl -s $url/api/game/versions -H 'X-Api-Token: $curseApiKey' > version_response.log", returnStdout: true).trim()
                             def versionList = readJSON text: versionRequest
                             def curseVersions = versionList.findAll {
                                 for (String version : gameVersions) {
