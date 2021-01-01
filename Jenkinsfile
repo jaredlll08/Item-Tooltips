@@ -65,7 +65,7 @@ pipeline {
                             def projectId = buildConfig["curseProjectId"];
                             def gameVersions = buildConfig["gameVersions"];
                             def curseApiKey = secrets["curseApiKey"]
-                            final String versionRequest = sh(script: "set +x && curl -s $url/api/game/versions -H 'X-Api-Token: $curseApiKey' | tee version_response.log", returnStdout: true).trim()
+                            final String versionRequest = sh(script: "set +x && curl -s $url/api/game/versions -H 'X-Api-Token: $curseApiKey'", returnStdout: true).trim()
                             def versionList = readJSON text: versionRequest
                             def curseVersions = versionList.findAll {
                                 for (String version : gameVersions) {
@@ -76,13 +76,17 @@ pipeline {
                             }.collect {
                                 it.id
                             };
+                            if (curseVersions.size != gameVersions.size){
+                                println "Could not find all versions! Found versions: $curseVersions, requested versions: $gameVersions"
+                                return;
+                            }
                             manifest.gameVersions = curseVersions;
                             final String fileName = sh(script: "ls build/", returnStdout: true).trim()
                             manifest["displayName"] = fileName
 
                             def json = JsonOutput.toJson(manifest)
 
-                            final String response = sh(script: "set +x && curl -s $url/api/projects/$projectId/upload-file -H 'X-Api-Token: $curseApiKey' -H 'content-type: multipart/form-data;' --form 'metadata=$json' --form 'file=@build/$fileName'  | tee upload_response.log", returnStdout: true).trim()
+                            final String response = sh(script: "set +x && curl -s $url/api/projects/$projectId/upload-file -H 'X-Api-Token: $curseApiKey' -H 'content-type: multipart/form-data;' --form 'metadata=$json' --form 'file=@build/$fileName'", returnStdout: true).trim()
                         } else {
                             println "Deploy disabled in build.json!"
                         }
