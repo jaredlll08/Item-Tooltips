@@ -60,8 +60,7 @@ pipeline {
                         ]
 
                         def buildConfig = readJSON file: "build.json"
-                        println buildConfig['relations'].size()
-                        if (buildConfig.containsKey("relations")) {
+                        if (buildConfig.containsKey("relations") && buildConfig['relations'].size() >0) {
                             manifest = [
                                     changelog    : "",
                                     changelogType: "",
@@ -79,7 +78,7 @@ pipeline {
                             manifest['changelogType'] = buildConfig["changelogType"]
                             manifest["releaseType"] = buildConfig["releaseType"]
 
-                            if (buildConfig.containsKey("relations"))
+                            if (buildConfig.containsKey("relations") && buildConfig['relations'].size() >0)
                                 manifest["relations"]["projects"] = buildConfig['relations']
 
                             def secrets = readJSON file: SECRET_FILE
@@ -104,7 +103,6 @@ pipeline {
 
                             def json = JsonOutput.toJson(manifest)
                             println "Uploading"
-                            println manifest
                             final String response = sh(script: "set +x && curl -s $url/api/projects/$projectId/upload-file -H 'X-Api-Token: $curseApiKey' -H 'content-type: multipart/form-data;' --form 'metadata=$json' --form 'file=@build/$fileName'", returnStdout: true).trim()
                             println response
                             println "Upload Complete"
