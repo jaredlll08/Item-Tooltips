@@ -57,10 +57,10 @@ pipeline {
                                 displayName  : "",
                                 gameVersions : [],
                                 releaseType  : "",
+                                relations    : [
                                 // This is optional, so the rest is required
-//                                 relations    : [
 //                                         projects: []
-//                                 ]
+                                ]
                         ]
 
                         def buildConfig = readJSON file: "build.json"
@@ -69,6 +69,7 @@ pipeline {
                             manifest["changelog"] = readFile(file: buildConfig["changelogFile"])
                             manifest['changelogType'] = buildConfig["changelogType"]
                             manifest["releaseType"] = buildConfig["releaseType"]
+
                             manifest["relations"]["projects"] = buildConfig['relations']
 
                             def secrets = readJSON file: SECRET_FILE
