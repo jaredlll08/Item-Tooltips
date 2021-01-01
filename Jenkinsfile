@@ -76,12 +76,6 @@ pipeline {
                             }.collect {
                                 it.id
                             };
-                            println curseVersions
-                            println gameVersions
-                            if (curseVersions.size != gameVersions.size){
-                                println "Could not find all versions! Found versions: $curseVersions, requested versions: $gameVersions"
-                                return;
-                            }
                             manifest.gameVersions = curseVersions;
                             final String fileName = sh(script: "ls build/", returnStdout: true).trim()
                             manifest["displayName"] = fileName
