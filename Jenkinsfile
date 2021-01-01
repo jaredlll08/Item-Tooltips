@@ -18,14 +18,14 @@ pipeline {
 
     stages {
         stage("Clean") {
-                steps {
-                    script {
-                        println 'Cleaning build directory'
-                        sh(script: "rm -rf build/")
-                    }
-
+            steps {
+                script {
+                    println 'Cleaning build directory'
+                    sh(script: "rm -rf build/")
                 }
+
             }
+        }
         stage("Preflight") {
             steps {
                 script {
@@ -61,16 +61,17 @@ pipeline {
 
                         def buildConfig = readJSON file: "build.json"
 
-                        if(buildConfig.containsKey("relations")){
-                        manifest = [
-                            changelog    : "",
-                            changelogType: "",
-                            displayName  : "",
-                            gameVersions : [],
-                            releaseType  : "",
-                                relations : [
-                                    projects: []
-                             ]
+                        if (buildConfig.containsKey("relations")) {
+                            manifest = [
+                                    changelog    : "",
+                                    changelogType: "",
+                                    displayName  : "",
+                                    gameVersions : [],
+                                    releaseType  : "",
+                                    relations    : [
+                                            projects: []
+                                    ]
+                            ]
                         }
                         def deploy = buildConfig["deploy"]
                         if (deploy) {
@@ -78,7 +79,7 @@ pipeline {
                             manifest['changelogType'] = buildConfig["changelogType"]
                             manifest["releaseType"] = buildConfig["releaseType"]
 
-                            if(buildConfig.containsKey("relations"))
+                            if (buildConfig.containsKey("relations"))
                                 manifest["relations"]["projects"] = buildConfig['relations']
 
                             def secrets = readJSON file: SECRET_FILE
