@@ -60,7 +60,7 @@ pipeline {
                         ]
 
                         def buildConfig = readJSON file: "build.json"
-
+                        println buildConfig['relations'].getClass()
                         if (buildConfig.containsKey("relations")) {
                             manifest = [
                                     changelog    : "",
