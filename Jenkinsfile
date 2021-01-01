@@ -57,9 +57,10 @@ pipeline {
                                 displayName  : "",
                                 gameVersions : [],
                                 releaseType  : "",
-                                relations    : [
-                                        projects: []
-                                ]
+                                // This is optional, so the rest is required
+//                                 relations    : [
+//                                         projects: []
+//                                 ]
                         ]
 
                         def buildConfig = readJSON file: "build.json"
