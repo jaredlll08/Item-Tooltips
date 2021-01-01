@@ -76,6 +76,8 @@ pipeline {
                             }.collect {
                                 it.id
                             };
+                            println curseVersions
+                            println gameVersions
                             if (curseVersions.size != gameVersions.size){
                                 println "Could not find all versions! Found versions: $curseVersions, requested versions: $gameVersions"
                                 return;
