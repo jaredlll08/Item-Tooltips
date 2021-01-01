@@ -17,6 +17,15 @@ pipeline {
     }
 
     stages {
+        stage("Clean") {
+                steps {
+                    script {
+                        println 'Cleaning build directory'
+                        sh(script: "rm -rf build/")
+                    }
+
+                }
+            }
         stage("Preflight") {
             steps {
                 script {
