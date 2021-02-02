@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
@@ -13,7 +12,7 @@ namespace Item_Tooltips
         {
             helper.Events.Display.RenderingHud += DisplayOnRenderingHud;
         }
-        private static Texture2D background;
+
         private int _yValue;
         private int _fade;
         private int _fadeOut;
